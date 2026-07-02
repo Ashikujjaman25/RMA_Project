@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RMA Login</title>
+</head>
+<body>
+
+    <h2>RMA Login</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Login</button>
+    </form>
+
+</body>
+</html>
