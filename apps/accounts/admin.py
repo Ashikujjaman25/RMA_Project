@@ -5,11 +5,18 @@ from .models import CustomUser
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
+
     list_display = (
         "username",
         "email",
-        "first_name",
-        "last_name",
+        "role",
+        "phone",
+        "is_staff",
+        "is_active",
+    )
+
+    list_filter = (
+        "role",
         "is_staff",
         "is_active",
     )
@@ -19,6 +26,21 @@ class CustomUserAdmin(UserAdmin):
         "email",
         "first_name",
         "last_name",
+        "phone",
     )
 
-    ordering = ("username",)
+    ordering = (
+        "username",
+    )
+
+    fieldsets = UserAdmin.fieldsets + (
+        (
+            "RMA Information",
+            {
+                "fields": (
+                    "role",
+                    "phone",
+                )
+            },
+        ),
+    )
