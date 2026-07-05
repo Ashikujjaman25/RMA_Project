@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import login
-from .forms import LoginForm
 from django.contrib.auth import login, logout
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+
+from .forms import LoginForm
 
 
 def login_view(request):
@@ -16,6 +18,12 @@ def login_view(request):
 
     return render(request, "accounts/login.html", {"form": form})
 
+
 def logout_view(request):
     logout(request)
     return redirect("/accounts/login/")
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = "accounts/password_change.html"
+    success_url = reverse_lazy("password_change_done")
