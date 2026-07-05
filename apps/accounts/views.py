@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import login
 from .forms import LoginForm
+from django.contrib.auth import login, logout
 
 
 def login_view(request):
@@ -14,3 +15,7 @@ def login_view(request):
         return redirect("/")
 
     return render(request, "accounts/login.html", {"form": form})
+
+def logout_view(request):
+    logout(request)
+    return redirect("/accounts/login/")
