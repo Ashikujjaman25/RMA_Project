@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Department Head Dashboard</title>
+</head>
+<body>
+
+<h1>Department Head Dashboard</h1>
+
+<p>Welcome {{ request.user.username }}</p>
+
+<p>Role : {{ request.user.role }}</p>
+
+<a href="/accounts/logout/">
+    <button>Logout</button>
+</a>
+
+</body>
+</html>
