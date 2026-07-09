@@ -12,6 +12,9 @@ urlpatterns = [
     # Accounts
     path("accounts/", include("apps.accounts.urls")),
 
+    # Departments
+    path("departments/", include("apps.departments.urls")),
+
     # Dashboards
     path("admin-dashboard/", views.admin_dashboard, name="admin_dashboard"),
     path("head-dashboard/", views.head_dashboard, name="head_dashboard"),

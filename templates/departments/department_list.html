@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Departments</title>
+</head>
+<body>
+
+<h1>Department List</h1>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Head</th>
+    </tr>
+
+    {% for department in departments %}
+
+    <tr>
+        <td>{{ department.id }}</td>
+        <td>{{ department.name }}</td>
+        <td>{{ department.code }}</td>
+        <td>{{ department.head }}</td>
+    </tr>
+
+    {% empty %}
+
+    <tr>
+        <td colspan="4">No Department Found.</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<br>
+
+<a href="/">
+    Back to Dashboard
+</a>
+
+</body>
+</html>
