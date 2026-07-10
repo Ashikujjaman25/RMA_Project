@@ -7,6 +7,12 @@
 
 <h1>Department List</h1>
 
+<p>
+    <a href="/departments/create/">
+        ➕ Add Department
+    </a>
+</p>
+
 <table border="1" cellpadding="10">
 
     <tr>
@@ -14,6 +20,7 @@
         <th>Name</th>
         <th>Code</th>
         <th>Head</th>
+        <th>Action</th>
     </tr>
 
     {% for department in departments %}
@@ -23,12 +30,26 @@
         <td>{{ department.name }}</td>
         <td>{{ department.code }}</td>
         <td>{{ department.head }}</td>
+
+        <td>
+            <a href="{% url 'edit_department' department.id %}">
+                Edit
+            </a>
+
+            |
+
+            <a href="{% url 'delete_department' department.id %}">
+                Delete
+            </a>
+        </td>
     </tr>
 
     {% empty %}
 
     <tr>
-        <td colspan="4">No Department Found.</td>
+        <td colspan="5">
+            No Department Found.
+        </td>
     </tr>
 
     {% endfor %}

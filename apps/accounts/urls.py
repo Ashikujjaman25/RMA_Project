@@ -11,6 +11,8 @@ from .views import (
     login_view,
     logout_view,
     CustomPasswordChangeView,
+    create_department_head,
+    create_employee,
 )
 
 urlpatterns = [
@@ -20,7 +22,28 @@ urlpatterns = [
     # Logout
     path("logout/", logout_view, name="logout"),
 
+    # ==========================
+    # User Management
+    # ==========================
+
+    # Admin -> Create Department Head
+    path(
+        "create-department-head/",
+        create_department_head,
+        name="create_department_head",
+    ),
+
+    # Department Head -> Create Employee
+    path(
+        "create-employee/",
+        create_employee,
+        name="create_employee",
+    ),
+
+    # ==========================
     # Password Change
+    # ==========================
+
     path(
         "password-change/",
         CustomPasswordChangeView.as_view(),
@@ -35,7 +58,10 @@ urlpatterns = [
         name="password_change_done",
     ),
 
+    # ==========================
     # Password Reset
+    # ==========================
+
     path(
         "password-reset/",
         PasswordResetView.as_view(

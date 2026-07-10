@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Employee</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            width:500px;
+            margin:40px auto;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-bottom:15px;
+        }
+
+        button{
+            padding:10px 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Create Employee</h2>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Create Employee
+    </button>
+
+</form>
+
+<br>
+
+<a href="/">
+    Back to Dashboard
+</a>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Department</title>
+</head>
+<body>
+
+<h1>Delete Department</h1>
+
+<p>
+    Are you sure you want to delete
+    <strong>{{ department.name }}</strong>?
+</p>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <button type="submit">
+        Yes, Delete
+    </button>
+</form>
+
+<br>
+
+<a href="/departments/">
+    Cancel
+</a>
+
+</body>
+</html>

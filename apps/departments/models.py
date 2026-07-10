@@ -6,12 +6,12 @@ class Department(models.Model):
 
     name = models.CharField(
         max_length=100,
-        unique=True
+        unique=True,
     )
 
     code = models.CharField(
         max_length=20,
-        unique=True
+        unique=True,
     )
 
     head = models.OneToOneField(
@@ -19,15 +19,16 @@ class Department(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        limit_choices_to={'role': 'HEAD'}
+        limit_choices_to={"role": "HEAD"},
+        related_name="headed_department",
     )
 
     created_at = models.DateTimeField(
-        auto_now_add=True
+        auto_now_add=True,
     )
 
     updated_at = models.DateTimeField(
-        auto_now=True
+        auto_now=True,
     )
 
     def __str__(self):
