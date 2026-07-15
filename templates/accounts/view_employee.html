@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Employee Profile</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            width: 700px;
+            margin: 40px auto;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        table, th, td{
+            border:1px solid #ddd;
+        }
+
+        th{
+            width:35%;
+            background:#f5f5f5;
+            text-align:left;
+            padding:10px;
+        }
+
+        td{
+            padding:10px;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>Employee Profile</h2>
+
+<table>
+
+    <tr>
+        <th>Username</th>
+        <td>{{ employee.username }}</td>
+    </tr>
+
+    <tr>
+        <th>First Name</th>
+        <td>{{ employee.first_name }}</td>
+    </tr>
+
+    <tr>
+        <th>Last Name</th>
+        <td>{{ employee.last_name }}</td>
+    </tr>
+
+    <tr>
+        <th>Email</th>
+        <td>{{ employee.email }}</td>
+    </tr>
+
+    <tr>
+        <th>Phone</th>
+        <td>{{ employee.phone }}</td>
+    </tr>
+
+    <tr>
+        <th>Department</th>
+        <td>{{ employee.department }}</td>
+    </tr>
+
+    <tr>
+        <th>Role</th>
+        <td>{{ employee.role }}</td>
+    </tr>
+
+    <tr>
+        <th>Date Joined</th>
+        <td>{{ employee.date_joined }}</td>
+    </tr>
+
+    <tr>
+        <th>Last Login</th>
+        <td>{{ employee.last_login }}</td>
+    </tr>
+
+</table>
+
+<br>
+
+<a href="{% url 'employee_list' %}">
+    ← Back to Employee List
+</a>
+
+</body>
+</html>

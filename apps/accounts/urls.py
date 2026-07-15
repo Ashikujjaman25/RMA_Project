@@ -16,6 +16,7 @@ from .views import (
     employee_list,
     edit_employee,
     delete_employee,
+    view_employee,
 )
 
 urlpatterns = [
@@ -66,6 +67,12 @@ urlpatterns = [
     delete_employee,
     name="delete_employee",
     ) ,
+
+    path(
+    "employees/<int:user_id>/",
+    view_employee,
+    name="view_employee",
+    ),
 
     # ==========================
     # Password Change

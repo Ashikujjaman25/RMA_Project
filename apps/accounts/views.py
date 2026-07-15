@@ -202,3 +202,26 @@ def delete_employee(request, user_id):
             "employee": employee,
         },
     )
+
+
+# ==========================================
+# View Employee (Department Head Only)
+# ==========================================
+
+@role_required("HEAD")
+def view_employee(request, user_id):
+
+    employee = get_object_or_404(
+        CustomUser,
+        id=user_id,
+        role="EMPLOYEE",
+        department=request.user.department,
+    )
+
+    return render(
+        request,
+        "accounts/view_employee.html",
+        {
+            "employee": employee,
+        },
+    )

@@ -110,7 +110,13 @@
 
         <td>{{ employee.phone }}</td>
 
-         <td>
+        <td>
+
+    <a
+        class="action-btn"
+        href="{% url 'view_employee' employee.id %}">
+        View
+    </a>
 
     <a
         class="action-btn"
@@ -124,7 +130,7 @@
         Delete
     </a>
 
-</td>
+    </td>
 
     </tr>
 
