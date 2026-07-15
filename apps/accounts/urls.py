@@ -13,9 +13,14 @@ from .views import (
     CustomPasswordChangeView,
     create_department_head,
     create_employee,
+    employee_list,
 )
 
 urlpatterns = [
+    # ==========================
+    # Authentication
+    # ==========================
+
     # Login
     path("login/", login_view, name="login"),
 
@@ -38,6 +43,13 @@ urlpatterns = [
         "create-employee/",
         create_employee,
         name="create_employee",
+    ),
+
+    # Department Head -> Employee List
+    path(
+        "employees/",
+        employee_list,
+        name="employee_list",
     ),
 
     # ==========================

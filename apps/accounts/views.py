@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
+from .models import CustomUser
 
 from apps.core.decorators import role_required
 from .forms import (
@@ -92,5 +94,33 @@ def create_employee(request):
         "accounts/create_employee.html",
         {
             "form": form,
+        },
+    )
+
+# ==========================================
+# Employee List (Department Head Only)
+# ==========================================
+
+@role_required("HEAD")
+def employee_list(request):
+
+    employees = (
+        CustomUser.objects.filter(
+            role="EMPLOYEE",
+            department=request.user.department,
+        ).order_by("first_name", "username")
+    )
+
+    paginator = Paginator(employees, 10)
+
+    page_number = request.GET.get("page")
+
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request,
+        "accounts/employee_list.html",
+        {
+            "page_obj": page_obj,
         },
     )
