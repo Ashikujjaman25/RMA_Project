@@ -101,14 +101,28 @@ def create_employee(request):
 # Employee List (Department Head Only)
 # ==========================================
 
+# ==========================================
+# Employee List (Department Head Only)
+# ==========================================
+
 @role_required("HEAD")
 def employee_list(request):
 
-    employees = (
-        CustomUser.objects.filter(
-            role="EMPLOYEE",
-            department=request.user.department,
-        ).order_by("first_name", "username")
+    search = request.GET.get("search", "").strip()
+
+    employees = CustomUser.objects.filter(
+        role="EMPLOYEE",
+        department=request.user.department,
+    )
+
+    if search:
+        employees = employees.filter(
+            username__icontains=search
+        )
+
+    employees = employees.order_by(
+        "first_name",
+        "username",
     )
 
     paginator = Paginator(employees, 10)
@@ -122,5 +136,6 @@ def employee_list(request):
         "accounts/employee_list.html",
         {
             "page_obj": page_obj,
+            "search": search,
         },
     )

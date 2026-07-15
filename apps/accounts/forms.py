@@ -111,3 +111,34 @@ class EmployeeCreationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match.")
 
         return cleaned_data
+    
+# ==========================================
+# Employee Update Form
+# ==========================================
+
+class EmployeeUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = CustomUser
+
+        fields = [
+            "first_name",
+            "last_name",
+            "email",
+            "phone",
+        ]
+
+        widgets = {
+            "first_name": forms.TextInput(
+                attrs={"class": "form-control"}
+            ),
+            "last_name": forms.TextInput(
+                attrs={"class": "form-control"}
+            ),
+            "email": forms.EmailInput(
+                attrs={"class": "form-control"}
+            ),
+            "phone": forms.TextInput(
+                attrs={"class": "form-control"}
+            ),
+        }
