@@ -240,3 +240,29 @@ def my_profile(request):
             "employee": request.user,
         },
     )
+
+# ==========================================
+# Employee Update Own Profile
+# ==========================================
+
+@role_required("EMPLOYEE")
+def update_my_profile(request):
+
+    form = EmployeeUpdateForm(
+        request.POST or None,
+        instance=request.user,
+    )
+
+    if request.method == "POST" and form.is_valid():
+
+        form.save()
+
+        return redirect("my_profile")
+
+    return render(
+        request,
+        "accounts/update_my_profile.html",
+        {
+            "form": form,
+        },
+    )

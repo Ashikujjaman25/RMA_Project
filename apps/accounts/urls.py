@@ -18,6 +18,7 @@ from .views import (
     delete_employee,
     view_employee,
     my_profile,
+    update_my_profile,
 )
 
 urlpatterns = [
@@ -80,6 +81,12 @@ urlpatterns = [
     my_profile,
     name="my_profile",
      ),
+
+     path(
+    "my-profile/edit/",
+    update_my_profile,
+    name="update_my_profile",
+    ),
 
     # ==========================
     # Password Change
