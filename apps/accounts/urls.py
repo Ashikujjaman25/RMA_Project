@@ -14,6 +14,8 @@ from .views import (
     create_department_head,
     create_employee,
     employee_list,
+    edit_employee,
+    delete_employee,
 )
 
 urlpatterns = [
@@ -51,6 +53,19 @@ urlpatterns = [
         employee_list,
         name="employee_list",
     ),
+
+    # Department Head -> Edit Employee
+    path(
+        "employees/<int:user_id>/edit/",
+        edit_employee,
+        name="edit_employee",
+    ),
+    
+    path(
+    "employees/<int:user_id>/delete/",
+    delete_employee,
+    name="delete_employee",
+    ) ,
 
     # ==========================
     # Password Change

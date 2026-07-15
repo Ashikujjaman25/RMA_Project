@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Delete Employee</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            width:700px;
+            margin:60px auto;
+        }
+
+        .box{
+            border:1px solid #ddd;
+            padding:25px;
+            border-radius:5px;
+        }
+
+        button{
+            padding:8px 15px;
+            cursor:pointer;
+        }
+
+        a{
+            text-decoration:none;
+            margin-left:15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Delete Employee</h2>
+
+    <p>
+
+        Are you sure you want to delete
+
+        <strong>
+
+            {{ employee.first_name }}
+            {{ employee.last_name }}
+
+            ({{ employee.username }})
+
+        </strong>
+
+        ?
+
+    </p>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <button type="submit">
+
+            Yes, Delete
+
+        </button>
+
+        <a href="{% url 'employee_list' %}">
+
+            Cancel
+
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

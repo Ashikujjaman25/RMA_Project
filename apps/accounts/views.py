@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
@@ -10,6 +10,7 @@ from .forms import (
     LoginForm,
     DepartmentHeadCreationForm,
     EmployeeCreationForm,
+    EmployeeUpdateForm,
 )
 
 
@@ -137,5 +138,67 @@ def employee_list(request):
         {
             "page_obj": page_obj,
             "search": search,
+        },
+    )
+
+# ==========================================
+# Edit Employee (Department Head Only)
+# ==========================================
+
+@role_required("HEAD")
+def edit_employee(request, user_id):
+
+    employee = get_object_or_404(
+        CustomUser,
+        id=user_id,
+        role="EMPLOYEE",
+        department=request.user.department,
+    )
+
+    form = EmployeeUpdateForm(
+        request.POST or None,
+        instance=employee,
+    )
+
+    if request.method == "POST" and form.is_valid():
+
+        form.save()
+
+        return redirect("employee_list")
+
+    return render(
+        request,
+        "accounts/edit_employee.html",
+        {
+            "form": form,
+            "employee": employee,
+        },
+    )
+
+# ==========================================
+# Delete Employee (Department Head Only)
+# ==========================================
+
+@role_required("HEAD")
+def delete_employee(request, user_id):
+
+    employee = get_object_or_404(
+        CustomUser,
+        id=user_id,
+        role="EMPLOYEE",
+        department=request.user.department,
+    )
+
+    if request.method == "POST":
+
+        employee.delete()
+
+        return redirect("employee_list")
+
+    return render(
+        request,
+        "accounts/delete_employee.html",
+        {
+            "employee": employee,
         },
     )

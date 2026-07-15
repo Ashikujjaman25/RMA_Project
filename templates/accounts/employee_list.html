@@ -8,7 +8,7 @@
 
         body{
             font-family: Arial;
-            width: 900px;
+            width: 1000px;
             margin: 40px auto;
         }
 
@@ -27,6 +27,7 @@
 
         button{
             padding:8px 15px;
+            cursor:pointer;
         }
 
         table{
@@ -53,6 +54,13 @@
 
         .pagination a{
             margin-right:10px;
+        }
+
+        .action-btn{
+            text-decoration:none;
+            padding:5px 10px;
+            border:1px solid #333;
+            border-radius:4px;
         }
 
     </style>
@@ -85,6 +93,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Action</th>
     </tr>
 
     {% for employee in page_obj %}
@@ -101,12 +110,28 @@
 
         <td>{{ employee.phone }}</td>
 
+         <td>
+
+    <a
+        class="action-btn"
+        href="{% url 'edit_employee' employee.id %}">
+        Edit
+    </a>
+
+    <a
+        class="action-btn"
+        href="{% url 'delete_employee' employee.id %}">
+        Delete
+    </a>
+
+</td>
+
     </tr>
 
     {% empty %}
 
     <tr>
-        <td colspan="4">
+        <td colspan="5">
             No Employees Found.
         </td>
     </tr>
