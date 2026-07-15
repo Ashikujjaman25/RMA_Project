@@ -225,3 +225,18 @@ def view_employee(request, user_id):
             "employee": employee,
         },
     )
+
+# ==========================================
+# Employee View Own Profile
+# ==========================================
+
+@role_required("EMPLOYEE")
+def my_profile(request):
+
+    return render(
+        request,
+        "accounts/my_profile.html",
+        {
+            "employee": request.user,
+        },
+    )
