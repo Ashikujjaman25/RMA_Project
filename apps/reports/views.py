@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import ReportForm
 from .models import Report
+from django.db.models import Q
 
 # Create your views here.
 @login_required
@@ -75,6 +76,9 @@ def edit_draft(request, report_id):
 
 @login_required
 def submit_report(request, report_id):
+    if request.method != "POST":
+        return redirect("draft_reports")
+
     report = get_object_or_404(
         Report,
         id=report_id,
@@ -95,10 +99,22 @@ def report_history(request):
         status="SUBMITTED",
     )
 
+    title = request.GET.get("title", "").strip()
+    report_date = request.GET.get("report_date", "").strip()
+
+    if title:
+        reports = reports.filter(title__icontains=title)
+
+    if report_date:
+        reports = reports.filter(report_date=report_date)
+
     return render(
         request,
         "reports/report_history.html",
         {
             "reports": reports,
+            "title": title,
+            "report_date": report_date,
         },
     )
+ 

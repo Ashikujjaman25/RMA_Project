@@ -25,15 +25,22 @@
     <td>{{ report.report_date }}</td>
     <td>{{ report.status }}</td>
     
-    <td>
+   <td>
     <a href="{% url 'edit_draft' report.id %}">
-        <button>Edit</button>
+        <button type="button">Edit</button>
     </a>
 
-    <a href="{% url 'submit_report' report.id %}">
-        <button>Submit</button>
-    </a>
-    </td>
+    <form
+        method="post"
+        action="{% url 'submit_report' report.id %}"
+        style="display:inline;"
+    >
+        {% csrf_token %}
+        <button type="submit">
+            Submit
+        </button>
+    </form>
+</td>
 </tr>
 
     {% endfor %}

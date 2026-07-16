@@ -7,6 +7,35 @@
 
 <h2>Submitted Reports</h2>
 
+ <form method="get">
+
+    <input
+        type="text"
+        name="title"
+        placeholder="Search by title..."
+        value="{{ title }}"
+    >
+
+    <input
+        type="date"
+        name="report_date"
+        value="{{ report_date }}"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+    <a href="{% url 'report_history' %}">
+        <button type="button">
+            Reset
+        </button>
+    </a>
+
+</form>
+
+<br>
+
 {% if reports %}
 
 <table border="1" cellpadding="8">
