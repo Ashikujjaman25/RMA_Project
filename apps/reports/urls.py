@@ -26,4 +26,11 @@ path(
     views.submit_report,
     name="submit_report",
 ),
+
+
+path(
+    "history/",
+    views.report_history,
+    name="report_history",
+),
 ]

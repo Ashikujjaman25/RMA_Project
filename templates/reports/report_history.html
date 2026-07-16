@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report History</title>
+</head>
+<body>
+
+<h2>Submitted Reports</h2>
+
+{% if reports %}
+
+<table border="1" cellpadding="8">
+
+    <tr>
+        <th>Title</th>
+        <th>Report Date</th>
+        <th>Status</th>
+        <th>Submitted On</th>
+    </tr>
+
+    {% for report in reports %}
+
+    <tr>
+        <td>{{ report.title }}</td>
+        <td>{{ report.report_date }}</td>
+        <td>{{ report.status }}</td>
+        <td>{{ report.updated_at }}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% else %}
+
+<p>No submitted reports found.</p>
+
+{% endif %}
+
+<br>
+
+<a href="{% url 'employee_dashboard' %}">
+    <button>Back to Dashboard</button>
+</a>
+
+</body>
+</html>

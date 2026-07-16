@@ -86,3 +86,19 @@ def submit_report(request, report_id):
     report.save(update_fields=["status"])
 
     return redirect("draft_reports")
+
+
+@login_required
+def report_history(request):
+    reports = Report.objects.filter(
+        employee=request.user,
+        status="SUBMITTED",
+    )
+
+    return render(
+        request,
+        "reports/report_history.html",
+        {
+            "reports": reports,
+        },
+    )
