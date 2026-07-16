@@ -11,6 +11,22 @@
 
 <p>Role : {{ request.user.role }}</p>
 
+<hr>
+
+<h3>Reports</h3>
+
+<a href="{% url 'create_report' %}">
+    <button>Create Report</button>
+</a>
+
+<a href="{% url 'draft_reports' %}">
+    <button>My Draft Reports</button>
+</a>
+
+<br><br>
+
+<br><br>
+
 <a href="/accounts/logout/">
     <button>Logout</button>
 </a>

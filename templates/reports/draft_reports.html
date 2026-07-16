@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Draft Reports</title>
+</head>
+<body>
+
+<h2>My Draft Reports</h2>
+
+{% if drafts %}
+
+<table border="1" cellpadding="8">
+
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for report in drafts %}
+
+    <tr>
+    <td>{{ report.title }}</td>
+    <td>{{ report.report_date }}</td>
+    <td>{{ report.status }}</td>
+    
+    <td>
+    <a href="{% url 'edit_draft' report.id %}">
+        <button>Edit</button>
+    </a>
+
+    <a href="{% url 'submit_report' report.id %}">
+        <button>Submit</button>
+    </a>
+    </td>
+</tr>
+
+    {% endfor %}
+
+</table>
+
+{% else %}
+
+<p>No draft reports found.</p>
+
+{% endif %}
+
+<br>
+
+<a href="{% url 'employee_dashboard' %}">
+    Back to Dashboard
+</a>
+
+</body>
+</html>

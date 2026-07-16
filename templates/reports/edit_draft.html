@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Draft</title>
+</head>
+<body>
+
+<h2>Edit Draft Report</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Save Changes
+    </button>
+</form>
+
+<br>
+
+<a href="{% url 'draft_reports' %}">
+    Back to Draft Reports
+</a>
+
+</body>
+</html>

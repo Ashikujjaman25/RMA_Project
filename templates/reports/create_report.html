@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Report</title>
+</head>
+<body>
+
+    <h2>Create Daily Report</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Save Draft
+        </button>
+    </form>
+
+</body>
+</html>
